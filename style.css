@@ -1,86 +1,85 @@
 body {
   font-family: Arial, sans-serif;
   background-color: #f3f3f3;
-  padding: 10px;
+  padding: 0;
   margin: 0;
 }
 
 h1 {
   text-align: center;
   color: #3e3e3e;
-  font-size: 1.5em;
-  margin-bottom: 20px;
-  padding: 0 10px;
+  font-size: 1.6em;
+  padding: 20px 10px 10px;
+  margin: 0;
+}
+
+#tree-wrapper {
+  overflow-x: auto;
+  width: 100%;
+  padding: 10px 0;
 }
 
 #tree-container {
-  max-width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  min-width: max-content;
+  background: #fff;
+  padding: 20px;
   margin: auto;
-  background: white;
-  padding: 15px;
   border-radius: 12px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
-  overflow-x: auto;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
 
-ul.tree,
-ul.tree ul {
-  list-style-type: none;
-  padding-left: 15px;
-}
-
-ul.tree li {
+/* Node người */
+.node {
+  border: 1px solid #ccc;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: #fefefe;
+  text-align: center;
+  margin: 10px;
+  min-width: 140px;
   position: relative;
-  padding-left: 20px;
-  margin: 5px 0;
-  font-size: 1em;
-  line-height: 1.4;
-  word-wrap: break-word;
-  white-space: normal;
+  font-size: 14px;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+  word-break: break-word;
 }
 
-ul.tree li::before {
-  content: "";
+/* Con cháu được xếp theo cột dọc */
+.children {
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+  position: relative;
+}
+
+/* Nối ngang từ cha sang con */
+.node::after {
+  content: '';
   position: absolute;
-  left: 0;
-  color: gray;
-  font-size: 0.8em;
-  transition: transform 0.2s ease;
+  top: 50%;
+  right: -20px;
+  width: 20px;
+  height: 1px;
+  background: #999;
 }
 
-ul.tree li.has-children {
-  cursor: pointer;
+/* Dòng kẻ nhỏ giữa con và cha */
+.children .node:first-child::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  width: 20px;
+  height: 1px;
+  background: #999;
 }
 
-ul.tree li.has-children::before {
-  content: "▶";
-}
-
-ul.tree li.has-children.expanded::before {
-  content: "▼";
-}
-
-ul.tree ul {
-  display: none;
-}
-
-ul.tree li.expanded > ul {
-  display: block;
-}
-
-/* 👇 Responsive: Mobile chỉnh lại text nhỏ + spacing */
-@media screen and (max-width: 600px) {
-  h1 {
-    font-size: 1.2em;
-  }
-
-  ul.tree li {
-    font-size: 0.95em;
-    padding-left: 15px;
-  }
-
-  #tree-container {
-    padding: 10px;
-    border-radius: 8px;
+/* Mobile fix */
+@media screen and (max-width: 768px) {
+  .node {
+    min-width: 120px;
+    font-size: 13px;
   }
 }
