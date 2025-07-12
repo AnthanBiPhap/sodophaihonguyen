@@ -1,66 +1,86 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f3f3f3;
-    padding: 20px;
-  }
-  
+  font-family: Arial, sans-serif;
+  background-color: #f3f3f3;
+  padding: 10px;
+  margin: 0;
+}
+
+h1 {
+  text-align: center;
+  color: #3e3e3e;
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  padding: 0 10px;
+}
+
+#tree-container {
+  max-width: 100%;
+  margin: auto;
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  overflow-x: auto;
+}
+
+ul.tree,
+ul.tree ul {
+  list-style-type: none;
+  padding-left: 15px;
+}
+
+ul.tree li {
+  position: relative;
+  padding-left: 20px;
+  margin: 5px 0;
+  font-size: 1em;
+  line-height: 1.4;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+ul.tree li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  color: gray;
+  font-size: 0.8em;
+  transition: transform 0.2s ease;
+}
+
+ul.tree li.has-children {
+  cursor: pointer;
+}
+
+ul.tree li.has-children::before {
+  content: "▶";
+}
+
+ul.tree li.has-children.expanded::before {
+  content: "▼";
+}
+
+ul.tree ul {
+  display: none;
+}
+
+ul.tree li.expanded > ul {
+  display: block;
+}
+
+/* 👇 Responsive: Mobile chỉnh lại text nhỏ + spacing */
+@media screen and (max-width: 600px) {
   h1 {
-    text-align: center;
-    color: #3e3e3e;
+    font-size: 1.2em;
   }
-  
-  #tree-container {
-    max-width: 1000px;
-    margin: auto;
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  ul.tree,
-  ul.tree ul {
-    list-style-type: none;
-    padding-left: 20px;
-  }
-  
+
   ul.tree li {
-    position: relative;
-    padding-left: 20px;
-    margin: 5px 0;
-    cursor: default;
+    font-size: 0.95em;
+    padding-left: 15px;
   }
-  
-  /* Mặc định không hiện gì hết */
-  ul.tree li::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    color: gray;
-    font-size: 0.8em;
-    transition: transform 0.2s ease;
+
+  #tree-container {
+    padding: 10px;
+    border-radius: 8px;
   }
-  
-  /* Chỉ hiện tam giác nếu có class "has-children" */
-  ul.tree li.has-children {
-    cursor: pointer;
-  }
-  
-  ul.tree li.has-children::before {
-    content: "▶";
-  }
-  
-  ul.tree li.has-children.expanded::before {
-    content: "▼";
-  }
-  
-  /* Ẩn con mặc định */
-  ul.tree ul {
-    display: none;
-  }
-  
-  /* Mở con khi mở rộng */
-  ul.tree li.expanded > ul {
-    display: block;
-  }
-  
+}
