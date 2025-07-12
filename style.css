@@ -1,0 +1,66 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f3f3;
+    padding: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #3e3e3e;
+  }
+  
+  #tree-container {
+    max-width: 1000px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  ul.tree,
+  ul.tree ul {
+    list-style-type: none;
+    padding-left: 20px;
+  }
+  
+  ul.tree li {
+    position: relative;
+    padding-left: 20px;
+    margin: 5px 0;
+    cursor: default;
+  }
+  
+  /* Mặc định không hiện gì hết */
+  ul.tree li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    color: gray;
+    font-size: 0.8em;
+    transition: transform 0.2s ease;
+  }
+  
+  /* Chỉ hiện tam giác nếu có class "has-children" */
+  ul.tree li.has-children {
+    cursor: pointer;
+  }
+  
+  ul.tree li.has-children::before {
+    content: "▶";
+  }
+  
+  ul.tree li.has-children.expanded::before {
+    content: "▼";
+  }
+  
+  /* Ẩn con mặc định */
+  ul.tree ul {
+    display: none;
+  }
+  
+  /* Mở con khi mở rộng */
+  ul.tree li.expanded > ul {
+    display: block;
+  }
+  
